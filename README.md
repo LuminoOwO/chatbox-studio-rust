@@ -21,7 +21,7 @@ Progress (step by step, see the inventory's order of work):
 - ✅ 1. `cbs-core` - settings (reads the Python app's settings.json unchanged), paths,
   languages, routes, filters, chatbox blocks and composer, display modes; checked against
   the Python version's output
-- ⬜ 2. `cbs-osc` - OSC, OSCQuery, finding VRChat
+- ✅ 2. `cbs-osc` - OSC, OSCQuery, finding VRChat
 - ⬜ 3. `cbs-audio` - microphone, voice detection, sentence cutting
 - ⬜ 4. `cbs-asr` - Whisper and translation
 - ⬜ 5. headless app

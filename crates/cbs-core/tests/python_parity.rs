@@ -1,5 +1,6 @@
 //! The port against the Python version: tests/fixtures/python.json holds what the Python
 //! functions return for generated inputs (tools/make_fixtures.py writes it).
+#![allow(clippy::field_reassign_with_default)]
 
 use cbs_core::filters::FilterSet;
 use cbs_core::frames::*;

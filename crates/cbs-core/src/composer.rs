@@ -867,7 +867,10 @@ mod tests {
         }
     }
 
-    fn composer(cfg: Value) -> (Composer, Arc<Mutex<(f64, f64)>>, Arc<Mutex<Vec<String>>>) {
+    type Times = Arc<Mutex<(f64, f64)>>;
+    type Sent = Arc<Mutex<Vec<String>>>;
+
+    fn composer(cfg: Value) -> (Composer, Times, Sent) {
         let t = Arc::new(Mutex::new((100.0, 1_700_000_000.0)));
         let sent = Arc::new(Mutex::new(Vec::new()));
         let s2 = sent.clone();

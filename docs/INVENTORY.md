@@ -122,17 +122,17 @@ Contents:
 
 *(engine.py `active_routes`, `format_chatbox`, `split_for_chatbox`; routes_widget.py)*
 
-- [ ] Routes `{src, dst, enabled}`; default `[{en → en}]`; several active at once; source
+- [x] Routes `{src, dst, enabled}`; default `[{en → en}]`; several active at once; source
       list = Whisper's allowed languages.
-- [ ] `dst = "room"`: Earshot's room language (falls back to `room_fallback`).
+- [x] `dst = "room"`: Earshot's room language (falls back to `room_fallback`).
 - [ ] Routes panel: language combo boxes (47 languages, English first then alphabetical),
       enable checkbox, ⇄ reverse button, remove, **+ Add route** (new row en → en),
       Presets menu: "Only English, no translation", "Add the other direction of every
       route", "Translate everything I say into English".
-- [ ] Chatbox template with `{text} {original} {src} {dst}` (`_SafeDict`: unknown keys stay
+- [x] Chatbox template with `{text} {original} {src} {dst}` (`_SafeDict`: unknown keys stay
       literally); templates with `{original}` fall back to `{text}` when nothing was
       translated.
-- [ ] Split long text into 144-character messages (VRChat limit) at word boundaries;
+- [x] Split long text into 144-character messages (VRChat limit) at word boundaries;
       **UTF-16 length counting** (emoji = 2).
 - [ ] Save transcript to a text file.
 
@@ -140,11 +140,11 @@ Contents:
 
 *(filters.py, filters_dialog.py)*
 
-- [ ] Filler words removal (`remove_fillers`, list incl. "um", "uh", "äh", ...).
-- [ ] Replace rules: find → replace, whole word, regex, case-insensitive matching that keeps
+- [x] Filler words removal (`remove_fillers`, list incl. "um", "uh", "äh", ...).
+- [x] Replace rules: find → replace, whole word, regex, case-insensitive matching that keeps
       the original capitalisation (`_keep_case`), empty replacement deletes.
-- [ ] Block rules: sentence containing a phrase is not sent (logged).
-- [ ] `min_words`: ignore shorter sentences.
+- [x] Block rules: sentence containing a phrase is not sent (logged).
+- [x] `min_words`: ignore shorter sentences.
 - [ ] `filters_enabled`, `filter_typed`.
 - [ ] Filters dialog: two rule tables (add / remove rows), options, "Try it" box showing
       exactly what would be sent (`FilterOutcome`).
@@ -154,18 +154,18 @@ Contents:
 
 *(engine.py `OscBridge`, oscquery.py)*
 
-- [ ] Send `/chatbox/input [text, True, notify]` and `/chatbox/typing [bool]` over UDP to
+- [x] Send `/chatbox/input [text, True, notify]` and `/chatbox/typing [bool]` over UDP to
       `osc_host:osc_port` (127.0.0.1:9000).
-- [ ] Listen on `osc_listen_port` (9001) for `/avatar/parameters/MuteSelf`,
+- [x] Listen on `osc_listen_port` (9001) for `/avatar/parameters/MuteSelf`,
       `/avatar/parameters/AFK` and all `/avatar/parameters/*` (VRChat values: vrc_mode,
       vrc_tracking, vrc_height, vrc_scale, vrc_seated, vrc_earmuffs).
-- [ ] Port busy (VOR, face tracking): listen on a free port and advertise it with
+- [x] Port busy (VOR, face tracking): listen on a free port and advertise it with
       **OSCQuery** (`oscquery`): mDNS services `_oscjson._tcp` + `_osc._udp` and a small HTTP
       server answering the host info and the `/avatar` tree, so VRChat sends to us.
-- [ ] **VRChatFinder**: browse mDNS for VRChat's own OSCQuery service and send the chatbox
+- [x] **VRChatFinder**: browse mDNS for VRChat's own OSCQuery service and send the chatbox
       to VRChat's real port (fixes chatbox through OSC routers); go back to 9000 when VRChat
       closes ("VRChat closed - chatbox goes to port 9000 again.").
-- [ ] Retry loop when the port becomes free again ("mute sync works now").
+- [x] Retry loop when the port becomes free again ("mute sync works now").
 - [ ] Listen state shown in settings and the checklist ("Mute sync: port 9001 busy").
 - [ ] Rate limit: at most every `min_send_interval_s` (1.5 s) for speech; chatbox composer
       `min_interval` 1.2 s and `keepalive` 20 s.
@@ -175,40 +175,40 @@ Contents:
 *(chatbox.py, blocks.py)*
 
 ### Blocks and config
-- [ ] Block types: `speech` (one), `value` ({key}), `text` (own text with values; shows only
+- [x] Block types: `speech` (one), `value` ({key}), `text` (own text with values; shows only
       when all its values are non-empty; `[ ... ]` parts vanish when a value inside is
       empty), `rotating` (messages that take turns), `newline`.
-- [ ] Block fields: id (8 hex), type, `prio` number (speech 1, others 2; 0 = never removed),
+- [x] Block fields: id (8 hex), type, `prio` number (speech 1, others 2; 0 = never removed),
       visible, enabled, icon, per-type options (`OPT_DEFAULTS`: timezone, style 24h/12h,
       countdown target + label, max_title), display options (`DISPLAY_DEFAULTS`: show_mode,
       win_chars, win_step, win_seconds, win_lines), speech options (`SPEECH_DEFAULTS`:
       width 144, mode pages, page_seconds, scroll_words, scroll_seconds, hold_seconds, flow
       live, limit), gpu_index for graphics values, media filters.
-- [ ] Config: elements, separator (newline / custom), custom_separator, speech_alone,
+- [x] Config: elements, separator (newline / custom), custom_separator, speech_alone,
       min_interval 1.2, keepalive 20, hide_extras.
-- [ ] **Migration** of older configs (elements with priority words high/normal/low/keep →
+- [x] **Migration** of older configs (elements with priority words high/normal/low/keep →
       numbers via `PRIO_NUM`; renamed keys `_RENAME`), `normalize`, `default_blocks`.
-- [ ] Spacing rules: two value blocks get a space between them; text blocks joined exactly;
+- [x] Spacing rules: two value blocks get a space between them; text blocks joined exactly;
       a line where every block is empty disappears.
-- [ ] Priority: when full, the highest number makes room first (all blocks with that number
+- [x] Priority: when full, the highest number makes room first (all blocks with that number
       together); while speaking only blocks with a higher number than speech make room.
 - [ ] Privacy groups (speech, text, time, music, status, pc, vr, vrchat) + **Hide extras**;
       clear chatbox (Ctrl+L).
 
 ### Values *(OWN_KEYS + sysinfo PLACEHOLDERS, 117 + own)*
-- [ ] Time & date: time, date, weekday, tz (any time zone, 12/24 h; tzdata on Windows).
-- [ ] Countdown: countdown_left, countdown_label, countdown_date, countdown_done.
+- [x] Time & date: time, date, weekday, tz (any time zone, 12/24 h; tzdata on Windows).
+- [x] Countdown: countdown_left, countdown_label, countdown_date, countdown_done.
 - [ ] Music: title, artist, album, player, site, position, duration, bar (━━●──), status,
       audio_app, lyric_line, lyric_next.
 - [ ] Status: afk, afk_time, playtime, app_time, active_app, window_title, room_lang.
 - [ ] All PC / VR / device values of §8.
 
 ### Display modes *(chatbox.py frame functions)*
-- [ ] Values / text: full, Ticker, Marquee, Bounce, Lines, Pages, Typewriter (window of
+- [x] Values / text: full, Ticker, Marquee, Bounce, Lines, Pages, Typewriter (window of
       `win_chars`, `win_step`, `win_seconds`, `win_lines`).
-- [ ] Speech: Pages, Scroll (`scroll_words`/`scroll_seconds`), Marquee, Typewriter;
+- [x] Speech: Pages, Scroll (`scroll_words`/`scroll_seconds`), Marquee, Typewriter;
       `hold_seconds`; flow live; `limit`.
-- [ ] `truncate16` / `ulen` UTF-16 aware truncation; `wrap_words`; progress bar;
+- [x] `truncate16` / `ulen` UTF-16 aware truncation; `wrap_words`; progress bar;
       `fmt_duration`, `fmt_clock`.
 - [ ] Stats watcher only collects the values in use (`want`, `hold`), screen info.
 - [ ] VRChat clock (play time), AFK time.
@@ -446,14 +446,14 @@ becomes: choose parts → download models and GPU runtime libraries → done. Se
 | Data (models, logs, state) | `~/.local/share/chatbox-studio` | `%LOCALAPPDATA%\Chatbox Studio` |
 | Whisper models (CT2) | `~/.cache/huggingface` | `%USERPROFILE%\.cache\huggingface` |
 
-- [ ] `settings.json`: all fields of `Settings` (§1–5) with the same names and defaults,
+- [x] `settings.json`: all fields of `Settings` (§1–5) with the same names and defaults,
       plus `chatbox`, `earshot`, `extra` (`onboarded`, `hide_gpu_monitor`,
       `gpu_monitor_all`, …); unknown keys kept.
 - [ ] `components.json` (installed parts and devices).
 - [ ] Models folder: NLLB, smart models, `ggml/` models, engines (`engines/rocm`,
       `engines/whispercpp`).
 - [ ] `crash.log`, `starts.log` (who started / raised the app), lyrics cache.
-- [ ] Migration from the old app name folders (`migrate_from_old_name`).
+- [x] Migration from the old app name folders (`migrate_from_old_name`).
 
 ## 19. Robustness: logs, crashes, single instance
 
@@ -472,7 +472,7 @@ becomes: choose parts → download models and GPU runtime libraries → done. Se
 
 ## 21. Languages
 
-- [ ] 47 languages with Whisper code, display name and NLLB (FLORES-200) code exactly as in
+- [x] 47 languages with Whisper code, display name and NLLB (FLORES-200) code exactly as in
       languages.py; English first, then alphabetical; **no other language preferred**.
 
 ## 22. Build, release, CI
@@ -527,7 +527,8 @@ Each step builds, has tests, and is committed before the next:
    composer rules, display modes. Unit tests with the Python version's behaviour as
    reference (same inputs → same outputs; `tools/make_fixtures.py` records the Python
    functions' outputs, `crates/cbs-core/tests/python_parity.rs` compares).
-2. **`cbs-osc`**: OSC, OSCQuery, VRChat finder.
+2. ✅ **`cbs-osc`**: OSC, OSCQuery, VRChat finder (own small mDNS: like python-zeroconf
+   it announces 127.0.0.1 on every interface; checked against python-zeroconf both ways).
 3. **`cbs-audio`**: microphone, VAD, segmenter.
 4. **`cbs-asr`**: CTranslate2 Whisper + NLLB, whisper.cpp client, Qwen; GPU helper process.
 5. **Headless app**: microphone → chatbox end to end, without a window.
