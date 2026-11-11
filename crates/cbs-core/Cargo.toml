@@ -1,0 +1,15 @@
+[package]
+name = "cbs-core"
+description = "Chatbox Studio core: settings, languages, routes, filters, chatbox blocks and composer"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+fancy-regex.workspace = true
+regex.workspace = true
+chrono.workspace = true
+chrono-tz.workspace = true
+rand.workspace = true

@@ -1,0 +1,20 @@
+# Rebuilds the Clanker Index badge (.clanker/*.svg, shown in the README) on every push to
+# main - so also with every new version - and commits it.
+name: Clanker Index
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  badge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history, needed to see who wrote what
+      - uses: LuminoOwO/clanker-index-badge@main

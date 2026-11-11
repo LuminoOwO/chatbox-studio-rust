@@ -1,0 +1,10 @@
+# Clanker Index badge (https://github.com/LuminoOwO/clanker-index-badge)
+style: clanker
+categories:
+  code: auto
+  tests: auto
+  docs: auto
+  bugfix: auto
+  # The features and direction are the Python app's, which came from the maintainer; much of
+  # the UI and technical design from Claude. An estimate - adjust it as you see fit.
+  ideas: { human: 60, claude: 40, estimated: true }

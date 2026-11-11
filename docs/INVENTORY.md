@@ -522,10 +522,11 @@ behaviour, the chatbox rules, every text in the UI where possible, the package n
 
 Each step builds, has tests, and is committed before the next:
 
-1. **Workspace + `cbs-core`**: settings (read the Python app's settings.json unchanged),
+1. ✅ **Workspace + `cbs-core`**: settings (read the Python app's settings.json unchanged),
    paths, languages, routes, chatbox format, 144-char UTF-16 splitting, filters, blocks,
    composer rules, display modes. Unit tests with the Python version's behaviour as
-   reference (same inputs → same outputs).
+   reference (same inputs → same outputs; `tools/make_fixtures.py` records the Python
+   functions' outputs, `crates/cbs-core/tests/python_parity.rs` compares).
 2. **`cbs-osc`**: OSC, OSCQuery, VRChat finder.
 3. **`cbs-audio`**: microphone, VAD, segmenter.
 4. **`cbs-asr`**: CTranslate2 Whisper + NLLB, whisper.cpp client, Qwen; GPU helper process.
