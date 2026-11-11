@@ -1,0 +1,63 @@
+{
+  "style": "clanker",
+  "title": null,
+  "overall": 85,
+  "categories": [
+    {
+      "id": "code",
+      "label": "Code",
+      "estimated": false,
+      "ai": 100,
+      "shares": [
+        {
+          "id": "claude",
+          "p": 100
+        }
+      ],
+      "otherMembers": []
+    },
+    {
+      "id": "tests",
+      "label": "Tests",
+      "estimated": false,
+      "ai": 100,
+      "shares": [
+        {
+          "id": "claude",
+          "p": 100
+        }
+      ],
+      "otherMembers": []
+    },
+    {
+      "id": "docs",
+      "label": "Docs",
+      "estimated": false,
+      "ai": 100,
+      "shares": [
+        {
+          "id": "claude",
+          "p": 100
+        }
+      ],
+      "otherMembers": []
+    },
+    {
+      "id": "ideas",
+      "label": "Ideas & design",
+      "estimated": true,
+      "ai": 40,
+      "shares": [
+        {
+          "id": "claude",
+          "p": 40
+        },
+        {
+          "id": "human",
+          "p": 60
+        }
+      ],
+      "otherMembers": []
+    }
+  ]
+}
